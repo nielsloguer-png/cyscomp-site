@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CYSCOMP — Cyber Security Company</title>
+<meta name="description" content="Cibersegurança, resposta a incidentes e formação certificada EC-Council e CompTIA para petrolíferas, banca, seguradoras e instituições em Angola.">
+<meta name="theme-color" content="#07050d">
+<meta name="google" content="notranslate">
+<meta property="og:title" content="CYSCOMP — Cyber Security Company">
+<meta property="og:description" content="Segurança digital de classe mundial, a partir de Luanda.">
+<meta property="og:image" content="assets/img/photos/executivo.jpg">
+<link rel="icon" href="assets/img/brand/cyscomp-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/layout.js"></script>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div><img src="assets/img/brand/cyscomp-logo-white.png" alt=""><div class="loader__bar"><span></span></div></div>
+</div>
+<canvas id="ambient" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main>
+
+<!-- ============ INTRO CINEMATOGRÁFICA ============ -->
+<section class="intro" id="intro" aria-label="Apresentação">
+  <div class="intro__sticky">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="intro__shade"></div>
+
+    <div class="act act--center" data-in="-1" data-out=".18">
+      <p class="eyebrow"><span class="dot"></span>Protecção de dados · Cibersegurança</p>
+      <p class="act__big">Os seus dados são o activo <em>mais crítico</em> da sua organização.</p>
+      <div class="scroll-hint mono">Faça scroll <span></span></div>
+    </div>
+    <div class="act act--center" data-in=".24" data-out=".44">
+      <p class="act__big">Nós colocamo-nos entre eles <em>e quem os quer.</em></p>
+    </div>
+    <div class="act act--center" data-in=".5" data-out=".7">
+      <p class="act__words mono"><span>Detectar</span><span>Conter</span><span>Proteger</span><span>24/7</span></p>
+    </div>
+
+    <div class="act act--hero" data-in=".8" data-out="9">
+      <div class="wrap">
+        <div class="hero__copy">
+          <p class="eyebrow"><span class="dot"></span>Cyber Security Company · Luanda</p>
+          <h1 class="hero__title">Segurança digital <em>de classe mundial.</em></h1>
+          <p class="hero__lead">Cibersegurança, resposta a incidentes e formação certificada para as organizações que sustentam Angola: energia, banca, seguros e Estado.</p>
+          <div class="hero__actions">
+            <a href="#contacto" class="btn btn--light">Agendar diagnóstico <span class="btn__arrow">→</span></a>
+            <a href="formacoes.html" class="btn btn--ghost">Ver formações</a>
+          </div>
+          <div class="credential">
+            <img src="assets/img/logos/eccouncil-w.png" alt="EC-Council">
+            <div><b>1.º Revendedor Autorizado EC-Council em Angola</b><small>e parceiro oficial CompTIA</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="intro__rail" aria-hidden="true"><span class="intro__fill"></span></div>
+    <div class="intro__counter mono" aria-hidden="true"><span id="introPct">00</span> / 100</div>
+  </div>
+</section>
+
+<!-- ============ ESTADO DO SOC ============ -->
+<section class="statusband">
+  <div class="wrap">
+    <aside class="status reveal" aria-label="Estado operacional do SOC">
+      <div class="status__head"><span class="mono">SOC · LUANDA · WAT</span><span class="mono status__clock" id="clock">--:--:--</span></div>
+      <ul class="status__list">
+        <li><span class="pulse"></span><div><b>Monitorização</b><small>24 horas · 7 dias · 365 dias</small></div><span class="tag tag--ok">Activa</span></li>
+        <li><span class="pulse"></span><div><b>Correlação SIEM</b><small>Rede, endpoint e cloud</small></div><span class="tag tag--ok">Activa</span></li>
+        <li><span class="pulse"></span><div><b>Resposta a incidentes</b><small>Playbooks por organização</small></div><span class="tag tag--ok">Pronta</span></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ NÚMEROS ============ -->
+<section class="band">
+  <div class="wrap band__grid">
+    <div class="figure reveal"><span class="figure__n" data-count="7">0</span><span class="figure__l">linhas de serviço especializado</span></div>
+    <div class="figure reveal"><span class="figure__n" data-count="21">0</span><span class="figure__l">cursos técnicos no catálogo</span></div>
+    <div class="figure reveal"><span class="figure__n" data-count="19">0</span><span class="figure__l">certificações EC-Council</span></div>
+    <div class="figure reveal"><span class="figure__n" data-count="18">0</span><span class="figure__l">certificações CompTIA</span></div>
+    <div class="figure reveal"><span class="figure__n" data-count="15">0</span><span class="figure__l">organizações clientes de referência</span></div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section class="section" id="servicos">
+  <div class="wrap">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="label reveal">Serviços</p>
+        <h2 class="reveal">Prevenir, detectar, responder <em>e capacitar.</em></h2>
+      </div>
+      <p class="section__lead reveal">Um ciclo completo de protecção, com um único interlocutor. Cada serviço funciona isoladamente ou como parte de um programa integrado.</p>
+    </header>
+
+    <div class="services">
+      <article class="card reveal">
+        <div class="card__top"><span class="card__n">01 · Prevenir</span><span class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg></span></div>
+        <h3>Teste de intrusão</h3>
+        <p>Simulamos ataques reais, de forma controlada, para revelar como um adversário entraria antes que o faça.</p>
+        <ul class="chips"><li>Redes</li><li>Web e mobile</li><li>Wi-Fi</li><li>APIs</li></ul>
+      </article>
+      <article class="card reveal">
+        <div class="card__top"><span class="card__n">02 · Prevenir</span><span class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span></div>
+        <h3>Análise de vulnerabilidades</h3>
+        <p>Varredura automatizada, validação manual e classificação CVSS que transformam achados técnicos em prioridades de negócio.</p>
+        <ul class="chips"><li>CVE / CVSS</li><li>Plano de correcção</li></ul>
+      </article>
+      <article class="card reveal">
+        <div class="card__top"><span class="card__n">03 · Prevenir</span><span class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span></div>
+        <h3>Segurança de aplicações</h3>
+        <p>Da primeira linha de código à aplicação em produção: revisão de código, testes de segurança e autenticação.</p>
+        <ul class="chips"><li>Web</li><li>Mobile</li><li>Sessões</li></ul>
+      </article>
+      <article class="card reveal">
+        <div class="card__top"><span class="card__n">04 · Prevenir</span><span class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></svg></span></div>
+        <h3>Consultoria GRC e conformidade</h3>
+        <p>Políticas, análise de risco e conformidade alinhadas com o negócio e com a nova Lei n.º 9/26 da Cibersegurança.</p>
+        <ul class="chips"><li>ISO 27001</li><li>NIST CSF</li><li>Lei 9/26</li></ul>
+      </article>
+      <article class="card reveal">
+        <div class="card__top"><span class="card__n">05 · Responder</span><span class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span></div>
+        <h3>Resposta a incidentes e forense</h3>
+        <p>Quando um incidente acontece, cada hora conta. Investigação, identificação, recuperação e prevenção, com método forense.</p>
+        <ul class="chips"><li>DFIR</li><li>Cadeia de custódia</li></ul>
+      </article>
+      <article class="card reveal">
+        <div class="card__top"><span class="card__n">06 · Detectar</span><span class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span></div>
+        <h3>Monitorização e SOC</h3>
+        <p>Visibilidade contínua: recolha, correlação, detecção e contenção de ameaças antes que se tornem incidentes.</p>
+        <ul class="chips"><li>SIEM</li><li>IDS/IPS</li><li>24/7</li></ul>
+      </article>
+      <article class="card reveal">
+        <div class="card__top"><span class="card__n">07 · Capacitar</span><span class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span></div>
+        <h3>Formação e certificação</h3>
+        <p>19 certificações EC-Council, 18 CompTIA e 21 cursos técnicos, presenciais, híbridos ou remotos.</p>
+        <ul class="chips"><li>EC-Council</li><li>CompTIA</li><li>Bootcamps</li></ul>
+      </article>
+      <article class="card reveal">
+        <div class="card__top"><span class="card__n">08 · Reforçar</span><span class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M19 14.8c1.4.9 2.3 2.6 2.6 5.2"/></svg></span></div>
+        <h3>Outsourcing de técnicos</h3>
+        <p>Profissionais seleccionados, formados e acompanhados pela CYSCOMP, a trabalhar na sua organização, sem processo de recrutamento.</p>
+        <ul class="chips"><li>Projecto</li><li>Substituição</li><li>Contínuo</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEI 9/26 ============ -->
+<section class="section section--alt" style="padding-top:0;padding-bottom:0;background:transparent">
+  <div class="wrap">
+    <div class="law reveal">
+      <div>
+        <p class="label">Regulação · Angola</p>
+        <h2>Lei n.º 9/26: a sua organização <em>está preparada?</em></h2>
+        <p>A nova Lei da Cibersegurança, de 28 de Setembro, estabelece o Regime Jurídico da Cibersegurança e revoga a Lei n.º 7/17. Cada organização deve avaliar que obrigações lhe são aplicáveis. Começamos com uma reunião de diagnóstico.</p>
+        <div class="actions">
+          <a href="#contacto" class="btn btn--brand">Pedir diagnóstico <span class="btn__arrow">→</span></a>
+          <a href="noticias.html?n=lei-ciberseguranca" class="btn btn--ghost">O que muda</a>
+        </div>
+      </div>
+      <ul>
+        <li><span class="mono">01</span>Gestão de risco</li>
+        <li><span class="mono">02</span>Requisitos de segurança</li>
+        <li><span class="mono">03</span>Registo de incidentes</li>
+        <li><span class="mono">04</span>Notificação de incidentes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTORES ============ -->
+<section class="section" id="sectores">
+  <div class="wrap">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="label reveal">Sectores</p>
+        <h2 class="reveal">Conhecemos o risco <em>do seu sector.</em></h2>
+      </div>
+      <p class="section__lead reveal">Banca, seguros, saúde, justiça, indústria e tecnologia já confiam em nós. Ameaças, reguladores e tecnologias mudam de indústria para indústria, e a nossa abordagem também.</p>
+    </header>
+
+    <div class="sectors reveal">
+      <div class="sectors__tabs" role="tablist" aria-label="Sectores">
+        <button role="tab" aria-selected="true"><span class="mono">01</span>Petróleo &amp; Gás</button>
+        <button role="tab" aria-selected="false"><span class="mono">02</span>Banca</button>
+        <button role="tab" aria-selected="false"><span class="mono">03</span>Seguros</button>
+        <button role="tab" aria-selected="false"><span class="mono">04</span>Sector Público</button>
+        <button role="tab" aria-selected="false"><span class="mono">05</span>Telecomunicações</button>
+      </div>
+      <div class="sectors__panels">
+        <div class="panel is-active" role="tabpanel">
+          <div class="panel__txt">
+            <h3>Infraestruturas que não podem parar.</h3>
+            <p>Plataformas offshore, refinarias e redes de distribuição combinam sistemas industriais (OT/ICS) com redes corporativas. Uma intrusão aqui é um risco operacional, ambiental e de segurança física.</p>
+            <ul class="ticks"><li>Segurança de redes OT/ICS e SCADA</li><li>Risco de terceiros e cadeia de fornecedores</li><li>Continuidade e resposta a incidentes industriais</li></ul>
+          </div>
+          <div class="panel__img"><img src="assets/img/photos/offshore.jpg" alt="Engenheiro a inspeccionar sistemas numa plataforma petrolífera offshore" loading="lazy"></div>
+        </div>
+        <div class="panel" role="tabpanel">
+          <div class="panel__txt">
+            <h3>Confiança é o activo principal.</h3>
+            <p>Canais digitais, pagamentos e mensagens interbancárias são alvo constante de fraude, phishing direccionado e ransomware. O supervisor exige controlo, evidência e rapidez.</p>
+            <ul class="ticks"><li>Monitorização de canais digitais</li><li>Testes de intrusão a homebanking, mobile e APIs</li><li>Preparação para auditorias e regulação</li></ul>
+          </div>
+          <div class="panel__img"><img src="assets/img/photos/banca.jpg" alt="Equipa de profissionais a trabalhar num projecto financeiro" loading="lazy"></div>
+        </div>
+        <div class="panel" role="tabpanel">
+          <div class="panel__txt">
+            <h3>Dados sensíveis, responsabilidade total.</h3>
+            <p>Seguradoras guardam dados pessoais, clínicos e financeiros de milhares de segurados. Uma fuga compromete clientes, reputação e conformidade legal.</p>
+            <ul class="ticks"><li>Classificação e protecção de dados pessoais</li><li>Avaliação de risco cibernético</li><li>Resposta a incidentes e apoio forense</li></ul>
+          </div>
+          <div class="panel__img"><img src="assets/img/photos/reuniao.jpg" alt="Reunião de trabalho numa sala de escritório" loading="lazy"></div>
+        </div>
+        <div class="panel" role="tabpanel">
+          <div class="panel__txt">
+            <h3>Serviços ao cidadão, sem interrupções.</h3>
+            <p>A digitalização do Estado aumenta a superfície de ataque. Portais, bases de dados e sistemas internos exigem protecção ao nível da sua importância.</p>
+            <ul class="ticks"><li>SOC e centros de resposta (CSIRT)</li><li>Políticas de segurança e capacitação de quadros</li><li>Auditorias a sistemas críticos</li></ul>
+          </div>
+          <div class="panel__img"><img src="assets/img/photos/executivo.jpg" alt="Executivo num centro de dados" loading="lazy"></div>
+        </div>
+        <div class="panel" role="tabpanel">
+          <div class="panel__txt">
+            <h3>A espinha dorsal da conectividade.</h3>
+            <p>Operadores e ISPs gerem infraestruturas de que depende toda a economia, e enfrentam ataques volumétricos, fraude e espionagem.</p>
+            <ul class="ticks"><li>Detecção de intrusões em core network e data centers</li><li>Mitigação de DDoS e continuidade</li><li>Gestão de acessos privilegiados</li></ul>
+          </div>
+          <div class="panel__img"><img src="assets/img/photos/datacenter.jpg" alt="Corredor de um centro de dados" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACADEMIA ============ -->
+<section class="section section--alt" id="academia">
+  <div class="wrap">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="label reveal">Academia CYSCOMP</p>
+        <h2 class="reveal">Formamos os profissionais <em>que protegem Angola.</em></h2>
+      </div>
+      <p class="section__lead reveal">Curso oficial, laboratórios práticos, material de estudo e voucher de exame internacional. Presencial, híbrido ou remoto, com pagamento em prestações.</p>
+    </header>
+
+    <div class="academy">
+      <a class="academy__card reveal" href="formacoes.html#ec">
+        <img class="bg" src="assets/img/photos/formandos.jpg" alt="" loading="lazy">
+        <span class="tag">1.º revendedor autorizado em Angola</span>
+        <h3>Certificações EC-Council</h3>
+        <p>CEH, CHFI, E|CIH, CSA, CPENT, C|CISO e mais 13 programas oficiais.</p>
+        <span class="academy__n">19<small>certificações</small></span>
+      </a>
+      <a class="academy__card reveal" href="formacoes.html#comptia">
+        <img class="bg" src="assets/img/photos/soc-analista.jpg" alt="" loading="lazy">
+        <span class="tag">Parceiro oficial</span>
+        <h3>Certificações CompTIA</h3>
+        <p>Security+, CySA+, PenTest+, Network+ e o novo SecOT+.</p>
+        <span class="academy__n">18<small>certificações</small></span>
+      </a>
+      <a class="academy__card reveal" href="formacoes.html#tecnicos">
+        <img class="bg" src="assets/img/photos/forense.jpg" alt="" loading="lazy">
+        <span class="tag tag--ok">Inscrições abertas · DFIR</span>
+        <h3>Cursos técnicos e bootcamps</h3>
+        <p>Pentest, SOC Avançado, Forense Digital, Análise de Malware e mais.</p>
+        <span class="academy__n">24<small>programas</small></span>
+      </a>
+    </div>
+    <div class="badges reveal" id="badges" aria-label="Selos das certificações"></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:40px" class="reveal">
+      <a href="inscricao.html" class="btn btn--brand">Inscrição online <span class="btn__arrow">→</span></a>
+      <a href="formacoes.html" class="btn btn--ghost">Ver catálogo completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOC ============ -->
+<section class="section" id="soc">
+  <div class="wrap soc">
+    <div>
+      <p class="label reveal">Centro de Operações de Segurança</p>
+      <h2 class="reveal">Olhos atentos <em>enquanto a sua organização dorme.</em></h2>
+      <p class="section__lead reveal">O SOC transforma milhões de eventos em decisões. Analistas certificados triam, investigam e escalam apenas o que importa, com relatórios técnicos e executivos.</p>
+      <div class="soc__photo reveal"><img src="assets/img/photos/soc-sala.jpg" alt="Analistas num centro de operações de segurança" loading="lazy"></div>
+      <dl class="soc__facts reveal">
+        <div><dt>Recolha</dt><dd>Logs e eventos</dd></div>
+        <div><dt>Correlação</dt><dd>Padrões</dd></div>
+        <div><dt>Detecção</dt><dd>Tempo real</dd></div>
+        <div><dt>Contenção</dt><dd>Firewall · IDS/IPS</dd></div>
+      </dl>
+    </div>
+    <div class="console reveal" aria-label="Simulação ilustrativa da consola do SOC">
+      <div class="console__bar"><span></span><span></span><span></span><b class="mono">cyscomp-soc · live feed</b></div>
+      <div class="console__body mono" id="feed"></div>
+      <div class="console__foot mono"><span class="pulse"></span>Simulação ilustrativa</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENTES E PARCEIROS ============ -->
+<section class="section section--alt" id="clientes">
+  <div class="wrap">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="label reveal">Clientes e parceiros</p>
+        <h2 class="reveal">Organizações que <em>confiam em nós.</em></h2>
+      </div>
+      <p class="section__lead reveal">Banca, seguros, saúde, justiça, indústria e tecnologia. E um ecossistema de fabricantes, entidades certificadoras e instituições de formação.</p>
+    </header>
+    <div class="logos-sub reveal"><h3>Clientes</h3><p>15 organizações de referência</p></div>
+    <div class="logos reveal" id="logos-clientes"></div>
+    <div class="logos-sub reveal"><h3>Parceiros</h3><p>Fabricantes, entidades certificadoras e instituições de formação</p></div>
+    <div class="logos logos--partners reveal" id="logos-parceiros"></div>
+  </div>
+</section>
+
+<!-- ============ NOTÍCIAS ============ -->
+<section class="section" id="noticias">
+  <div class="wrap">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="label reveal">Notícias</p>
+        <h2 class="reveal">O que está <em>a acontecer.</em></h2>
+      </div>
+      <div class="reveal"><a class="link" href="noticias.html">Todas as notícias →</a></div>
+    </header>
+    <div class="news" id="home-news"></div>
+  </div>
+</section>
+
+<!-- ============ VERIFICAR CERTIFICADO ============ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="verify-teaser reveal">
+      <div>
+        <p class="label">Verificação de certificados</p>
+        <h2>Cada certificado CYSCOMP <em>é verificável.</em></h2>
+        <p class="section__lead">Empregadores e formandos podem confirmar a autenticidade de um certificado com o código impresso ou lendo o código QR.</p>
+        <form class="inline-form" id="verify-quick">
+          <input class="input" name="c" placeholder="CYS-2026-XXXXX" aria-label="Código do certificado" autocomplete="off">
+          <button class="btn btn--light" type="submit">Verificar <span class="btn__arrow">→</span></button>
+        </form>
+      </div>
+      <a class="cert-sample" href="verificar.html" aria-label="Abrir página de verificação">
+        <div class="cert-sample__top"><img src="assets/img/brand/cyscomp-mark-ink.svg" alt=""><small>Certificado de conclusão</small></div>
+        <h4>Nome do Formando</h4>
+        <p>concluiu com aproveitamento a formação <b>Pentest Profissional</b> · 45 h</p>
+        <div class="foot"><span class="code">N.º CYS-2026-XXXXX</span><span class="qr-mini" id="qr-mini"></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="section contact" id="contacto">
+  <div class="wrap contact__inner">
+    <div>
+      <p class="label reveal">Contacto</p>
+      <h2 class="reveal">Saiba onde está exposto <em>antes que alguém descubra por si.</em></h2>
+      <p class="section__lead reveal">Uma reunião de diagnóstico confidencial com um especialista, para definir prioridades e preparar uma proposta ajustada à sua realidade.</p>
+      <ul class="contact__list reveal">
+        <li><span class="mono">Telefone</span><span><a href="tel:+244938447195">+244 938 447 195</a> · <a href="tel:+244934659812">+244 934 659 812</a></span></li>
+        <li><span class="mono">Comercial</span><a href="mailto:comercial@cyscomp.co.ao">comercial@cyscomp.co.ao</a></li>
+        <li><span class="mono">Geral</span><a href="mailto:info@cyscomp.co.ao">info@cyscomp.co.ao</a></li>
+        <li><span class="mono">Morada</span>Urbanização Nova Vida, Rua 60, Casa n.º 1597 · Luanda</li>
+      </ul>
+      <p class="urgent reveal"><span class="pulse pulse--hot"></span>Incidente em curso? Ligue já para <a href="tel:+244938447195">+244 938 447 195</a></p>
+    </div>
+    <form class="form reveal" id="form" novalidate>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <div class="row2">
+        <label class="field">Nome<input name="nome" required autocomplete="name"></label>
+        <label class="field">Empresa<input name="empresa" required autocomplete="organization"></label>
+      </div>
+      <div class="row2">
+        <label class="field">Email profissional<input type="email" name="email" required autocomplete="email"></label>
+        <label class="field">Telefone<input type="tel" name="telefone" autocomplete="tel"></label>
+      </div>
+      <label class="field">Sector
+        <select name="sector"><option>Petróleo &amp; Gás</option><option>Banca</option><option>Seguros</option><option>Sector Público</option><option>Telecomunicações</option><option>Saúde</option><option>Outro</option></select>
+      </label>
+      <label class="field">Como podemos ajudar?<textarea name="mensagem" rows="4"></textarea></label>
+      <button class="btn btn--brand" type="submit">Pedir contacto confidencial <span class="btn__arrow">→</span></button>
+      <p class="form__note">Os seus dados são tratados com confidencialidade e usados apenas para responder a este pedido.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+<div id="site-footer"></div>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="assets/js/ambient.js"></script>
+<script src="assets/seq/seq.js"></script>
+<script src="assets/js/hero.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // QR de exemplo no certificado (aponta para a página de verificação)
+  (function () {
+    var el = document.getElementById('qr-mini');
+    if (!el || !window.qrcode) return;
+    var q = qrcode(0, 'M'); q.addData(location.origin + '/verificar.html?c=CYS-2026-DEMO1'); q.make();
+    el.innerHTML = q.createSvgTag({ scalable: true, margin: 0 });
+  })();
+</script>
+</body>
+</html>

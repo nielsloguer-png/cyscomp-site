@@ -1,0 +1,7 @@
+_data/
+.env
+__pycache__/
+*.db
+_gen/clips/
+_gen/*.png
+_gen/*.jpg

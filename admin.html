@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel CYSCOMP</title>
+<meta name="theme-color" content="#07050d">
+<link rel="icon" href="assets/img/brand/cyscomp-mark.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  body { background: var(--bg); }
+  .adm-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .adm-top img { height: 32px; }
+  .adm-tabs { display: flex; gap: 6px; margin: 28px 0 22px; flex-wrap: wrap; }
+  .adm-tabs button { all: unset; cursor: pointer; padding: 10px 18px; border-radius: 100px; border: 1px solid var(--line-2); font-size: 14px; color: var(--muted); }
+  .adm-tabs button[aria-pressed="true"] { background: #fff; color: #0d0918; }
+  .adm-tabs .n { font-family: var(--mono); font-size: 11px; margin-left: 6px; opacity: .7; }
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: rgba(13,9,24,.9); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); font-weight: 400; white-space: nowrap; }
+  td small { color: var(--muted); display: block; }
+  tr:last-child td { border-bottom: 0; }
+  td .btn { height: 34px; padding: 0 12px; font-size: 12.5px; }
+  td select { background: rgba(255,255,255,.05); color: #fff; border: 1px solid var(--line-2); border-radius: 8px; padding: 6px 8px; font: inherit; font-size: 12.5px; }
+  .st { font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 100px; border: 1px solid var(--line-2); }
+  .st--valido { color: var(--ok); border-color: rgba(62,224,143,.4); }
+  .st--revogado { color: #ff7a8a; border-color: rgba(255,90,110,.4); }
+  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .toolbar .input { max-width: 320px; padding: 10px 14px; }
+  .grid-new { display: grid; grid-template-columns: 2fr 2fr 1fr 1fr auto; gap: 10px; align-items: end; margin-bottom: 22px; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: rgba(13,9,24,.9); }
+  .grid-new .btn { height: 50px; }
+  dialog { border: 1px solid var(--line-2); border-radius: 20px; background: #0d0918; color: var(--text); padding: 28px; max-width: 420px; width: 92vw; }
+  dialog::backdrop { background: rgba(0,0,0,.7); }
+  .qrbox { background: #fff; padding: 18px; border-radius: 14px; margin: 18px 0; }
+  .login { max-width: 400px; margin: 18vh auto 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+  @media (max-width: 900px) { .grid-new { grid-template-columns: 1fr 1fr; } }
+  @media print { body * { visibility: hidden; } #qrDialog, #qrDialog * { visibility: visible; } #qrDialog { position: absolute; inset: 0; border: 0; } #qrDialog .no-print { display: none; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- Login -->
+  <form class="form login" id="login" hidden>
+    <img src="assets/img/brand/cyscomp-logo-white.png" alt="CYSCOMP" style="height:40px;width:auto">
+    <h2 style="margin:6px 0 0;font-weight:500">Painel de gestão</h2>
+    <label class="field">Palavra-passe<input type="password" name="password" required autocomplete="current-password"></label>
+    <button class="btn btn--brand" type="submit">Entrar</button>
+    <p class="form__note" id="loginMsg"></p>
+  </form>
+
+  <!-- Painel -->
+  <section id="app" hidden>
+    <div class="adm-top">
+      <a href="index.html"><img src="assets/img/brand/cyscomp-logo-white.png" alt="CYSCOMP"></a>
+      <div style="display:flex;gap:10px"><button class="btn btn--ghost btn--sm" id="reload">Actualizar</button><button class="btn btn--ghost btn--sm" id="logout">Sair</button></div>
+    </div>
+    <div class="adm-tabs" role="group">
+      <button data-tab="inscricoes" aria-pressed="true">Inscrições<span class="n" id="n-inscricoes"></span></button>
+      <button data-tab="certificados" aria-pressed="false">Certificados<span class="n" id="n-certificados"></span></button>
+      <button data-tab="contactos" aria-pressed="false">Contactos<span class="n" id="n-contactos"></span></button>
+    </div>
+
+    <div data-pane="inscricoes">
+      <div class="toolbar"><input class="input" id="fIns" placeholder="Filtrar por nome, curso, referência…"><button class="btn btn--ghost btn--sm" data-csv="inscricoes">Exportar CSV</button></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Ref. / data</th><th>Formando</th><th>Formação</th><th>Pagamento</th><th>Estado</th><th></th></tr></thead><tbody id="tIns"></tbody></table></div>
+    </div>
+
+    <div data-pane="certificados" hidden>
+      <form class="grid-new" id="newCert">
+        <label class="field">Nome do formando<input name="nome" required></label>
+        <label class="field">Formação<input name="curso" required list="cursosList"></label>
+        <label class="field">Horas<input name="horas" type="number" min="0"></label>
+        <label class="field">Emissão<input name="emissao" type="date" required></label>
+        <button class="btn btn--brand" type="submit">Emitir</button>
+        <input type="hidden" name="inscricao_ref">
+      </form>
+      <datalist id="cursosList"></datalist>
+      <div class="toolbar"><input class="input" id="fCert" placeholder="Filtrar por código, nome, formação…"><button class="btn btn--ghost btn--sm" data-csv="certificados">Exportar CSV</button></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Código</th><th>Formando</th><th>Formação</th><th>Emissão</th><th>Estado</th><th></th></tr></thead><tbody id="tCert"></tbody></table></div>
+    </div>
+
+    <div data-pane="contactos" hidden>
+      <div class="toolbar"><input class="input" id="fCt" placeholder="Filtrar…"><button class="btn btn--ghost btn--sm" data-csv="contactos">Exportar CSV</button></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Data</th><th>Contacto</th><th>Empresa / sector</th><th>Mensagem</th></tr></thead><tbody id="tCt"></tbody></table></div>
+    </div>
+  </section>
+
+  <dialog id="qrDialog">
+    <img src="assets/img/brand/cyscomp-logo-white.png" alt="" style="height:28px;width:auto" class="no-print">
+    <h3 style="margin:16px 0 4px;font-weight:500" id="qrName"></h3>
+    <div class="muted" id="qrCourse"></div>
+    <div class="qrbox" id="qrSvg"></div>
+    <div class="mono" id="qrCode" style="font-size:18px;letter-spacing:.1em;text-align:center"></div>
+    <div class="muted" id="qrUrl" style="word-break:break-all;margin-top:8px;font-size:12px"></div>
+    <div class="no-print" style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap">
+      <button class="btn btn--light btn--sm" id="qrDl">Descarregar QR (SVG)</button>
+      <button class="btn btn--ghost btn--sm" onclick="window.print()">Imprimir</button>
+      <button class="btn btn--ghost btn--sm" onclick="this.closest('dialog').close()">Fechar</button>
+    </div>
+  </dialog>
+</main>
+
+<script src="assets/js/data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(function () {
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fdate = (s) => s ? new Date(s.length === 10 ? s + 'T12:00:00' : s).toLocaleString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric', ...(s.length > 10 ? { hour: '2-digit', minute: '2-digit' } : {}) }) : '';
+  let token = sessionStorage.getItem('cys_admin') || '';
+  let data = { inscricoes: [], certificados: [], contactos: [] };
+
+  async function api(a, body) {
+    const r = await fetch(`api/admin?a=${a}`, { method: body ? 'POST' : 'GET', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token }, body: body ? JSON.stringify(body) : undefined });
+    const j = await r.json().catch(() => ({}));
+    if (r.status === 401 && a !== 'login') { logout(); throw new Error('sessão'); }
+    if (!r.ok) throw new Error(j.erro || 'Erro');
+    return j;
+  }
+
+  function logout() { token = ''; sessionStorage.removeItem('cys_admin'); $('#app').hidden = true; $('#login').hidden = false; }
+
+  $('#login').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try { const j = await api('login', { password: e.target.password.value }); token = j.token; sessionStorage.setItem('cys_admin', token); e.target.reset(); start(); }
+    catch (err) { $('#loginMsg').textContent = err.message; }
+  });
+  $('#logout').addEventListener('click', logout);
+  $('#reload').addEventListener('click', load);
+
+  // separadores
+  document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-tab]').forEach((x) => x.setAttribute('aria-pressed', x === b));
+    document.querySelectorAll('[data-pane]').forEach((p) => (p.hidden = p.dataset.pane !== b.dataset.tab));
+  }));
+
+  const ESTADOS = ['nova', 'contactada', 'confirmada', 'concluida', 'cancelada'];
+  function render() {
+    const fi = $('#fIns').value.toLowerCase(), fc = $('#fCert').value.toLowerCase(), ft = $('#fCt').value.toLowerCase();
+    const has = (o, f) => !f || Object.values(o).join(' ').toLowerCase().includes(f);
+    ['inscricoes', 'certificados', 'contactos'].forEach((k) => ($('#n-' + k).textContent = data[k].length));
+
+    $('#tIns').innerHTML = data.inscricoes.filter((r) => has(r, fi)).map((r) => `<tr>
+      <td class="mono">${esc(r.ref)}<small>${fdate(r.criado)}</small></td>
+      <td>${esc(r.nome)}<small>${esc(r.email)} · ${esc(r.telefone)}</small><small>${esc(r.documento)} · ${esc(r.provincia)}</small></td>
+      <td>${esc(r.curso)}<small>${esc(r.modalidade)} · ${esc(r.inicio)} · ${esc(r.horario)}</small></td>
+      <td>${esc(r.pagamento)}<small>${esc(r.factura)}${r.nif ? ' · NIF ' + esc(r.nif) : ''}</small>${r.obs ? `<small>${esc(r.obs)}</small>` : ''}</td>
+      <td><select data-ref="${esc(r.ref)}">${ESTADOS.map((s) => `<option${s === r.estado ? ' selected' : ''}>${s}</option>`).join('')}</select></td>
+      <td><button class="btn btn--ghost" data-emit="${esc(r.ref)}">Emitir certificado</button></td></tr>`).join('') || '<tr><td colspan="6" class="muted">Sem inscrições.</td></tr>';
+
+    $('#tCert').innerHTML = data.certificados.filter((r) => has(r, fc)).map((r) => `<tr>
+      <td class="mono">${esc(r.codigo)}${r.inscricao_ref ? `<small>${esc(r.inscricao_ref)}</small>` : ''}</td>
+      <td>${esc(r.nome)}</td><td>${esc(r.curso)}${r.horas ? `<small>${r.horas} h</small>` : ''}</td><td>${fdate(r.emissao)}</td>
+      <td><span class="st st--${esc(r.estado)}">${esc(r.estado)}</span></td>
+      <td style="white-space:nowrap"><button class="btn btn--light" data-qr="${esc(r.codigo)}">QR</button>
+        <button class="btn btn--ghost" data-toggle="${esc(r.codigo)}" data-to="${r.estado === 'valido' ? 'revogado' : 'valido'}">${r.estado === 'valido' ? 'Revogar' : 'Reactivar'}</button></td></tr>`).join('') || '<tr><td colspan="6" class="muted">Sem certificados emitidos.</td></tr>';
+
+    $('#tCt').innerHTML = data.contactos.filter((r) => has(r, ft)).map((r) => `<tr>
+      <td>${fdate(r.criado)}</td><td>${esc(r.nome)}<small><a href="mailto:${esc(r.email)}">${esc(r.email)}</a> · ${esc(r.telefone)}</small></td>
+      <td>${esc(r.empresa)}<small>${esc(r.sector)}</small></td><td style="max-width:420px">${esc(r.mensagem)}</td></tr>`).join('') || '<tr><td colspan="4" class="muted">Sem contactos.</td></tr>';
+  }
+  ['#fIns', '#fCert', '#fCt'].forEach((s) => $(s).addEventListener('input', render));
+
+  document.addEventListener('change', async (e) => {
+    if (e.target.matches('select[data-ref]')) { await api('inscricao_estado', { ref: e.target.dataset.ref, estado: e.target.value }); load(); }
+  });
+  document.addEventListener('click', async (e) => {
+    const t = e.target.closest('button'); if (!t) return;
+    if (t.dataset.emit) {
+      const r = data.inscricoes.find((x) => x.ref === t.dataset.emit); const c = CYS.curso(r.curso_id);
+      const f = $('#newCert'); f.nome.value = r.nome; f.curso.value = r.curso; f.horas.value = (c && c.horas) || ''; f.inscricao_ref.value = r.ref;
+      document.querySelector('[data-tab="certificados"]').click(); f.nome.focus();
+    }
+    if (t.dataset.qr) showQR(data.certificados.find((x) => x.codigo === t.dataset.qr));
+    if (t.dataset.toggle) {
+      if (t.dataset.to === 'revogado' && !confirm(`Revogar o certificado ${t.dataset.toggle}? A verificação pública passa a indicá-lo como revogado.`)) return;
+      await api('certificado_estado', { codigo: t.dataset.toggle, estado: t.dataset.to }); load();
+    }
+    if (t.dataset.csv) csv(t.dataset.csv);
+  });
+
+  $('#newCert').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(e.target));
+    try { const j = await api('certificado', d); e.target.reset(); e.target.emissao.valueAsDate = new Date(); await load(); showQR(data.certificados.find((x) => x.codigo === j.codigo)); }
+    catch (err) { alert(err.message); }
+  });
+
+  function verifyUrl(code) { return `${location.origin}/verificar.html?c=${code}`; }
+  function showQR(c) {
+    if (!c) return;
+    const q = qrcode(0, 'M'); q.addData(verifyUrl(c.codigo)); q.make();
+    const svg = q.createSvgTag({ scalable: true, margin: 2 });
+    $('#qrSvg').innerHTML = svg; $('#qrName').textContent = c.nome; $('#qrCourse').textContent = c.curso;
+    $('#qrCode').textContent = c.codigo; $('#qrUrl').textContent = verifyUrl(c.codigo);
+    $('#qrDl').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' })); a.download = `QR_${c.codigo}.svg`; a.click(); };
+    $('#qrDialog').showModal();
+  }
+
+  function csv(k) {
+    const rows = data[k]; if (!rows.length) return;
+    const cols = Object.keys(rows[0]);
+    const out = [cols.join(';')].concat(rows.map((r) => cols.map((c) => `"${String(r[c] ?? '').replace(/"/g, '""')}"`).join(';'))).join('\n');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + out], { type: 'text/csv' })); a.download = `cyscomp_${k}_${new Date().toISOString().slice(0, 10)}.csv`; a.click();
+  }
+
+  async function load() { try { data = await api('resumo'); render(); } catch (e) { /* tratado em api() */ } }
+  function start() { $('#login').hidden = true; $('#app').hidden = false; load(); }
+
+  $('#cursosList').innerHTML = CYS.cursos.map((c) => `<option value="${esc(c.sigla ? c.sigla + ' — ' + c.nome : c.nome)}">`).join('');
+  $('#newCert').emissao.valueAsDate = new Date();
+  if (token) start(); else $('#login').hidden = false;
+  if (/\.github\.io$/.test(location.hostname)) $('#loginMsg').textContent = 'O painel só funciona no site publicado na Vercel (com servidor). Esta é uma pré-visualização estática.';
+})();
+</script>
+</body>
+</html>

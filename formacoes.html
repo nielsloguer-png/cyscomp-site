@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formações e certificações — CYSCOMP</title>
+<meta name="description" content="19 certificações EC-Council, 18 CompTIA, 21 cursos técnicos e 3 bootcamps. 1.º revendedor autorizado EC-Council em Angola. Inscrição online.">
+<meta name="theme-color" content="#07050d">
+<meta name="google" content="notranslate">
+<link rel="icon" href="assets/img/brand/cyscomp-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="formacoes">
+<div id="site-header"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/layout.js"></script>
+<canvas id="ambient" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main>
+  <header class="page-hero">
+    <div class="page-hero__photo"><img src="assets/img/photos/formandos.jpg" alt=""></div>
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Início</a> / Formações</div>
+      <p class="eyebrow"><span class="dot"></span>Academia CYSCOMP</p>
+      <h1>Certificações que o mercado <em>reconhece em todo o mundo.</em></h1>
+      <p>1.º revendedor autorizado EC-Council em Angola e parceiro CompTIA. Formadores certificados, laboratórios práticos e cenários reais, em formato presencial, híbrido ou remoto.</p>
+      <div class="hero__actions" style="margin-top:34px">
+        <a href="inscricao.html" class="btn btn--brand">Inscrição online <span class="btn__arrow">→</span></a>
+        <a href="#empresas" class="btn btn--ghost">Formação para empresas</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="band">
+    <div class="wrap band__grid">
+      <div class="figure reveal"><span class="figure__n" data-count="19">0</span><span class="figure__l">certificações EC-Council</span></div>
+      <div class="figure reveal"><span class="figure__n" data-count="18">0</span><span class="figure__l">certificações CompTIA</span></div>
+      <div class="figure reveal"><span class="figure__n" data-count="21">0</span><span class="figure__l">formações técnicas especializadas</span></div>
+      <div class="figure reveal"><span class="figure__n" data-count="3">0</span><span class="figure__l">bootcamps com projecto real</span></div>
+      <div class="figure reveal"><span class="figure__n" data-count="3">0</span><span class="figure__l">modalidades: presencial, híbrida e remota</span></div>
+    </div>
+  </section>
+
+  <nav class="catnav" aria-label="Categorias">
+    <div class="wrap catnav__in">
+      <a href="#ec">EC-Council</a><a href="#comptia">CompTIA</a><a href="#tecnicos">Cursos técnicos</a><a href="#bootcamps">Bootcamps</a><a href="#empresas">Empresas</a>
+      <label class="search"><span class="sr-only">Pesquisar formação</span><input class="input" id="q" type="search" placeholder="Pesquisar: CEH, SOC, Linux…" autocomplete="off"></label>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:0">
+    <div class="wrap" id="catalogo"></div>
+
+    <div class="wrap" id="empresas" style="scroll-margin-top:150px">
+      <div class="split-cta">
+        <div class="reveal">
+          <p class="label">Empresas</p>
+          <h3>Programas corporativos à medida</h3>
+          <p>Turmas fechadas para a sua equipa, nas suas instalações ou nas nossas, com conteúdos adaptados ao seu sector. Condições especiais para volume de inscrições e planeamento ajustado à sua disponibilidade.</p>
+          <a href="index.html#contacto" class="btn btn--light">Pedir proposta de formação <span class="btn__arrow">→</span></a>
+        </div>
+        <div class="reveal">
+          <p class="label">CYSCOMP na Tua Província</p>
+          <h3>Formação nas 21 províncias</h3>
+          <p>Master classes, workshops práticos, palestras de sensibilização e formação certificada, levados até à sua província mediante solicitação.</p>
+          <a href="noticias.html?n=na-tua-provincia" class="btn btn--ghost">Saber como pedir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div id="site-footer"></div>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/js/ambient.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  const root = document.getElementById('catalogo');
+  const inc = {
+    ec: ['Curso oficial', 'Laboratórios práticos', 'Material oficial', 'Voucher de exame'],
+    comptia: ['Neutras de fabricante', 'Reconhecimento internacional', 'Dos fundamentos ao avançado'],
+    tecnicos: ['Carga horária definida', 'Forte componente prática', 'Certificado CYSCOMP verificável'],
+    bootcamps: ['Imersivo', 'Projecto final real']
+  };
+  const card = (c) => {
+    const meta = [c.nivel, c.area, c.horas && `${c.horas} h`, c.dias && `${c.dias} dias`].filter(Boolean);
+    const hot = c.destaque || c.etiqueta;
+    return `<article class="course reveal${hot ? ' course--hot' : ''}" data-q="${(c.sigla || '') + ' ' + c.nome + ' ' + c.area}">
+      <div class="course__top">
+        <div>${c.sigla ? `<div class="course__sigla">${c.sigla}</div>` : ''}${c.etiqueta ? `<span class="tag" style="margin-top:8px">${c.etiqueta}</span>` : (c.destaque ? '<span class="tag tag--ok" style="margin-top:8px">Mais procurado</span>' : '')}</div>
+        ${c.img ? `<img class="course__badge" src="${c.img}" alt="Selo ${c.sigla}" loading="lazy">` : ''}
+      </div>
+      <h3>${c.nome}</h3>
+      <p>${c.desc}</p>
+      <div class="course__meta">${meta.map((m) => `<span>${m}</span>`).join('')}</div>
+      <div class="course__go">
+        <a class="btn btn--light" href="inscricao.html?curso=${c.id}">Inscrever-me</a>
+        <a class="btn btn--ghost" href="index.html#contacto">Pedir valores</a>
+      </div>
+    </article>`;
+  };
+  root.innerHTML = CYS.categorias.map((cat) => `
+    <section class="cat" id="${cat.id}">
+      <div class="cat__head">
+        <div><p class="label reveal">${CYS.cursos.filter((c) => c.cat === cat.id).length} programas</p><h2 class="reveal">${cat.nome}</h2></div>
+        <div class="reveal"><p>${cat.resumo}</p><div class="includes">${inc[cat.id].map((t) => `<span class="tag tag--muted">${t}</span>`).join('')}</div></div>
+      </div>
+      <div class="courses">${CYS.cursos.filter((c) => c.cat === cat.id).map(card).join('')}</div>
+    </section>`).join('');
+  CYS.reveal(root);
+  if (location.hash) { const t = document.querySelector(location.hash); if (t) setTimeout(() => (CYS.lenis ? CYS.lenis.scrollTo(t, { offset: -70, immediate: true }) : t.scrollIntoView()), 60); }
+
+  // pesquisa
+  const q = document.getElementById('q');
+  q.addEventListener('input', () => {
+    const t = q.value.trim().toLowerCase();
+    document.querySelectorAll('.cat').forEach((sec) => {
+      let n = 0;
+      sec.querySelectorAll('.course').forEach((c) => {
+        const ok = !t || c.dataset.q.toLowerCase().includes(t);
+        c.style.display = ok ? '' : 'none'; if (ok) { n++; c.classList.add('is-in'); }
+      });
+      sec.style.display = n ? '' : 'none';
+    });
+  });
+
+  // categoria activa na barra
+  const links = [...document.querySelectorAll('.catnav a')];
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) links.forEach((a) => a.classList.toggle('is-on', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('.cat, #empresas').forEach((s) => io.observe(s));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+_gen/
+_data/
+.env
+dev_server.py
+*.db
+__pycache__/
